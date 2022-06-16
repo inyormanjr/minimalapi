@@ -1,5 +1,6 @@
 ﻿using MinimalWebAPI.Endpoints;
 using MinimalWebAPI.Extensions;
+using MinimalWebAPI.WebApp.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,5 +28,6 @@ app.UseAuthorization();
 app.UseHttpsRedirection();
 
 app.MapAccountEndPoint();
+app.MapUserEndpoint();
 
 app.Run();

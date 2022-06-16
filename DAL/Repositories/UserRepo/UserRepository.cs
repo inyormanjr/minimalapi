@@ -14,14 +14,15 @@ namespace DAL.Repositories.UserRepo
             dbContext = _dbContext;
         }
 
-        public async Task Delete(int id)
+        public async Task<bool> Delete(int id)
         {
             User user = await dbContext.Users.FindAsync(id);
              dbContext.Users.Remove(user);
-            await dbContext.SaveChangesAsync();
+             var result = await dbContext.SaveChangesAsync() > 0;
+            return result;
         }
 
-        public async Task<User> GetById(int id)
+        public async Task<User?> GetById(int id)
         {
             return await dbContext.Users.FindAsync(id);
         }
@@ -31,25 +32,24 @@ namespace DAL.Repositories.UserRepo
             return await dbContext.Users.Skip(skip).Take(take).ToListAsync();
         }
 
-        public async Task<User> GetUserByUsername(string username)
+        public async Task<User?> GetUserByUsername(string username)
         {
             return await dbContext.Users.FirstOrDefaultAsync(x => x.Email == username);
         }
 
-        public async Task Save(User entity)
+        public async Task<User> Save(User entity)
         {
-            await dbContext.Users.AddAsync(entity);
-            await dbContext.SaveChangesAsync();
+            this.dbContext.Add(entity);
+            await this.dbContext.SaveChangesAsync();
+            return entity;
         }
 
-        public async Task Update(int id, User entity)
+        public async Task<User?> Update(int id,User entity)
         {
-            User user = await dbContext.Users.FindAsync(id);
-            if(user != null)
-            {
-                dbContext.Users.Update(user);
+                dbContext.Users.AsNoTracking();
+                dbContext.Users.Update(entity);
                 await dbContext.SaveChangesAsync();
-            }
+                return entity;
         }
     }
 }

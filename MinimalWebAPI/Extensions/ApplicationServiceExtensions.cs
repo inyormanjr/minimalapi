@@ -1,5 +1,6 @@
-﻿using System;
+﻿
 using BLL.Services.Account;
+using BLL.Services.Users;
 using BLL.Utilities;
 using DAL;
 using DAL.IRepositories;
@@ -15,6 +16,7 @@ namespace MinimalWebAPI.Extensions
 			services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 			services.AddScoped<IUserRepository, UserRepository>();
 			services.AddScoped<AccountServices>();
+			services.AddScoped<UserService>();
 			services.AddDbContext<MDbContext>(dbContextOptionsBuilder =>
 			{
 				dbContextOptionsBuilder.UseSqlite(config.GetConnectionString("DefaultConnection"), b =>  b.MigrationsAssembly("DAL"));

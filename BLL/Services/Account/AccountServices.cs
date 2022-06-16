@@ -27,7 +27,7 @@ namespace BLL.Services.Account
             return remapped;
         }
 
-        public async Task<UserDTO> Login(LoginUserDTO loginUserDTO)
+        public async Task<UserDTO?> Login(LoginUserDTO loginUserDTO)
         {
             var user = await userRepository.GetUserByUsername(loginUserDTO.Email);
             if (user == null) return null;

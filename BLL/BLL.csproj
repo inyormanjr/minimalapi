@@ -19,6 +19,7 @@
     <None Remove="Utilities\" />
     <None Remove="Extensions\" />
     <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <None Remove="Services\User\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -27,6 +28,7 @@
     <Folder Include="DTO\Users\" />
     <Folder Include="Utilities\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Services\Users\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />

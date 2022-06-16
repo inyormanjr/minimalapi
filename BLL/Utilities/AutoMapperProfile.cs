@@ -9,7 +9,8 @@ namespace BLL.Utilities
 	{
 		public AutoMapperProfile()
 		{
-			CreateMap<User, UserDTO>().ReverseMap();
+			CreateMap<User, UserDTO>();
+			CreateMap<UserDTO, User>();
 			CreateMap<User, CreateUserDTO>().ReverseMap();
 		}
 	}
